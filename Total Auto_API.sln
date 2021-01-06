@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TX_API", "TX_API\TX_API.csproj", "{182F72EC-053E-423A-8799-55C4873DD532}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Total Auto_API", "TX_API\Total Auto_API.csproj", "{182F72EC-053E-423A-8799-55C4873DD532}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TX_Model", "TX_Model\TX_Model.csproj", "{99CFDA70-768E-4C88-B5C1-17DA9A6CF418}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Total Auto_Model", "TX_Model\Total Auto_Model.csproj", "{99CFDA70-768E-4C88-B5C1-17DA9A6CF418}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TX_DAL", "TX_DAL\TX_DAL.csproj", "{4119BA8B-71CC-4710-9090-547B83DBE767}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Total Auto_DAL", "TX_DAL\Total Auto_DAL.csproj", "{4119BA8B-71CC-4710-9090-547B83DBE767}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TX_BLL", "TX_BLL\TX_BLL.csproj", "{3C9461BA-DFAB-4C7C-82A0-B08CBC1141B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Total Auto_BLL", "TX_BLL\Total Auto_BLL.csproj", "{3C9461BA-DFAB-4C7C-82A0-B08CBC1141B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
