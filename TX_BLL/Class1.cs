@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TX_BLL
+namespace Total_Auto_BLL
 {
     public class Class1
     {

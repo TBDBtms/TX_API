@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TX_Model
+namespace Total_Auto_Model
 {
     public class Class1
     {

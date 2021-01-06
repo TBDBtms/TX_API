@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TX_DAL
+namespace Total_Auto_DAL
 {
     public class Class1
     {

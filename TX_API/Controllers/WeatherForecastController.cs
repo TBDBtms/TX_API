@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TX_API.Controllers
+namespace Total_Auto_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
