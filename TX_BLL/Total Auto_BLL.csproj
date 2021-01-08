@@ -9,4 +9,9 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TX_DAL\Total Auto_DAL.csproj" />
+    <ProjectReference Include="..\TX_Model\Total Auto_Model.csproj" />
+  </ItemGroup>
+
 </Project>
