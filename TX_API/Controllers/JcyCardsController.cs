@@ -1,151 +1,170 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
-using Total_Auto_Model;
 using Total_Auto_Model.JcyCardModel;
+using Total_Auto_BLL;
 
-namespace Total_Auto_DAL
+namespace Total_Auto_API.Controllers
 {
-    public class JcyCardDAL
+    [ApiController]
+    public class JcyCardsController : ControllerBase
     {
+
+        JcyCardBLL bll = new JcyCardBLL();
         /// <summary>
         /// 查询品牌
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns>.
+        [Route("api/[controller]/BrandsList")]
+        [HttpGet]
         public Task<List<Brand>> BrandsList()
         {
-            string str = $"select top 10 from Brand ORDER BY BrandId DESC";
-            return Task.FromResult(JcyDBHelper.GetList<Brand>(str));
+            return bll.BrandsList();
         }
         /// <summary>
         /// 根据id查询品牌对应的车系
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<List<CarSeries>> CarSeriesList(int id=0)
+        [Route("api/[controller]/CarSeriesList")]
+        [HttpGet]
+        public Task<List<CarSeries>> CarSeriesList(int id = 0)
         {
-            string str = $"select b.CarserName from Brand a JOIN CarSeries b on a.BrandId=b.BrandId where 1=1 and a.BrandId={id}";
-            return Task.FromResult(JcyDBHelper.GetList<CarSeries>(str));
+            return bll.CarSeriesList(id);
         }
         /// <summary>
         /// 获取变速箱下拉
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Route("api/[controller]/GearboxList")]
+        [HttpGet]
         public Task<List<Gearbox>> GearboxList()
         {
-            string str = $"select * from Gearbox";
-            return Task.FromResult(JcyDBHelper.GetList<Gearbox>(str));
+            return bll.GearboxList();
         }
         /// <summary>
         /// 获取车型下拉
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/CarsVisonList")]
+        [HttpGet]
         public Task<List<CarsVison>> CarsVisonList()
         {
-            string str = $"select * from CarsVison";
-            return Task.FromResult(JcyDBHelper.GetList<CarsVison>(str));
+            return bll.CarsVisonList();
         }
         /// <summary>
         /// 获取里程下拉
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/MileageList")]
+        [HttpGet]
         public Task<List<Mileage>> MileageList()
         {
-            string str = $"select * from Mileage";
-            return Task.FromResult(JcyDBHelper.GetList<Mileage>(str));
+            return bll.MileageList();
         }
         /// <summary>
         /// 获取排量下拉
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/DisplacementList")]
+        [HttpGet]
         public Task<List<Displacement>> DisplacementList()
         {
-            string str = $"select * from Displacement";
-            return Task.FromResult(JcyDBHelper.GetList<Displacement>(str));
+            return bll.DisplacementList();
         }
         /// <summary>
         /// 获取排放标准
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/DischargenormList")]
+        [HttpGet]
         public Task<List<Dischargenorm>> DischargenormList()
         {
-            string str = $"select * from Dischargenorm";
-            return Task.FromResult(JcyDBHelper.GetList<Dischargenorm>(str));
+            return bll.DischargenormList();
         }
         /// <summary>
         /// 获取座位数
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/SeatnumList")]
+        [HttpGet]
         public Task<List<Seatnum>> SeatnumList()
         {
-            string str = $"select * from Seatnum";
-            return Task.FromResult(JcyDBHelper.GetList<Seatnum>(str));
+            return bll.SeatnumList();
         }
         /// <summary>
         /// 获取燃油类型
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/FuelTypeList")]
+        [HttpGet]
         public Task<List<FuelType>> FuelTypeList()
         {
-            string str = $"select * from FuelType";
-            return Task.FromResult(JcyDBHelper.GetList<FuelType>(str));
+            return bll.FuelTypeList();
         }
         /// <summary>
         /// 获取颜色
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/ColorsList")]
+        [HttpGet]
         public Task<List<Colors>> ColorsList()
         {
-            string str = $"select * from Colors";
-            return Task.FromResult(JcyDBHelper.GetList<Colors>(str));
+            return bll.ColorsList();
         }
         /// <summary>
         /// 获取车牌所在地
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/CarnumlocationList")]
+        [HttpGet]
         public Task<List<Carnumlocation>> CarnumlocationList()
         {
-            string str = $"select * from Carnumlocation";
-            return Task.FromResult(JcyDBHelper.GetList<Carnumlocation>(str));
+            return bll.CarnumlocationList();
         }
         /// <summary>
         /// 获取驱动类型
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/DriveTypeList")]
+        [HttpGet]
         public Task<List<DriveType>> DriveTypeList()
         {
-            string str = $"select * from DriveType";
-            return Task.FromResult(JcyDBHelper.GetList<DriveType>(str));
+            return bll.DriveTypeList();
         }
         /// <summary>
         /// 获取国别
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/CountryDistinctList")]
+        [HttpGet]
         public Task<List<CountryDistinct>> CountryDistinctList()
         {
-            string str = $"select * from CountryDistinct";
-            return Task.FromResult(JcyDBHelper.GetList<CountryDistinct>(str));
+            return bll.CountryDistinctList();
         }
         /// <summary>
         /// 获取国别
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/BrightConfigList")]
+        [HttpGet]
         public Task<List<BrightConfig>> BrightConfigList()
         {
-            string str = $"select * from CountryDistinct";
-            return Task.FromResult(JcyDBHelper.GetList<BrightConfig>(str));
+            return bll.BrightConfigList();
         }
         /// <summary>
         /// 获取国别
         /// </summary>
         /// <returns></returns>
+        [Route("api/[controller]/HotSizerList")]
+        [HttpGet]
         public Task<List<HotSizer>> HotSizerList()
         {
-            string str = $"select * from HotSizer";
-            return Task.FromResult(JcyDBHelper.GetList<HotSizer>(str));
+            return bll.HotSizerList();
         }
-
     }
 }
