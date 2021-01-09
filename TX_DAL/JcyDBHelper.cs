@@ -1,45 +1,45 @@
-﻿using Newtonsoft.Json;
+﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
+using System.Data;  
 using System.Text;
 
 namespace Total_Auto_DAL
 {
     public class JcyDBHelper
     {
-        static string str = "server=127.0.0.1;database=worldcars;uid=root;pwd=123456";
+        static string str = "server=127.0.0.1;database=worldcards;uid=root;pwd=123456";
         public static List<T> GetList<T>(string sql)
         {
-            using (SqlConnection conn = new SqlConnection(str))  //查询
+            using (MySqlConnection conn = new MySqlConnection(str))  //查询
             {
                 conn.Open();
-                SqlDataAdapter sda = new SqlDataAdapter(sql, conn);
+                MySqlDataAdapter sda = new MySqlDataAdapter(sql, conn);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
-                string list = JsonConvert.SerializeObject(dt);
-                List<T> list1 = JsonConvert.DeserializeObject<List<T>>(list);
+                var list = JsonConvert.SerializeObject(dt);
+                var list1 = JsonConvert.DeserializeObject<List<T>>(list);
                 return list1;
             }
         }
 
         public static int CMD(string sql)  //增删改
         {
-            using (SqlConnection conn = new SqlConnection(str))
+            using (MySqlConnection conn = new MySqlConnection(str))
             {
                 conn.Open();
-                SqlCommand com = new SqlCommand(sql, conn);
+                MySqlCommand com = new MySqlCommand(sql, conn);
                 return com.ExecuteNonQuery();
             }
         }
 
         public static int CMD2(string sql)  //增删改返回数据主键
         {
-            using (SqlConnection conn = new SqlConnection(str))
+            using (MySqlConnection conn = new MySqlConnection(str))
             {
                 conn.Open();
-                SqlCommand com = new SqlCommand(sql, conn);
+                MySqlCommand com = new MySqlCommand(sql, conn);
                 return Convert.ToInt32(com.ExecuteScalar());
             }
         }
@@ -49,15 +49,15 @@ namespace Total_Auto_DAL
         /// <param name="procname"></param>
         /// <param name="paras"></param>
         /// <returns></returns>
-        public static List<T> GetDataTable_Proc<T>(string procname, SqlParameter[] paras = null)
+        public static List<T> GetDataTable_Proc<T>(string procname, MySqlParameter[] paras = null)
         {
-            using (SqlConnection conn = new SqlConnection(str))
+            using (MySqlConnection conn = new MySqlConnection(str))
             {
 
                 conn.Open();
 
                 //1.实例化SQL指令
-                SqlCommand command = new SqlCommand(procname, conn);
+                MySqlCommand command = new MySqlCommand(procname, conn);
                 //2,设置SQL指令执行存储过程
                 command.CommandType = CommandType.StoredProcedure;
                 //3.判断存储过程参数
@@ -67,7 +67,7 @@ namespace Total_Auto_DAL
                 }
 
                 //4.实例化适配器
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                 //5.实例化DT
                 var dt = new DataTable();
                 //6.填充数据   
@@ -85,15 +85,15 @@ namespace Total_Auto_DAL
         /// <param name="procname"></param>
         /// <param name="paras"></param>
         /// <returns></returns>
-        public static int CMD_Proc(string procname, SqlParameter[] paras = null)
+        public static int CMD_Proc(string procname, MySqlParameter[] paras = null)
         {
-            using (SqlConnection conn = new SqlConnection(str))
+            using (MySqlConnection conn = new MySqlConnection(str))
             {
 
                 conn.Open();
 
                 //1.实例化SQL指令
-                SqlCommand command = new SqlCommand(procname, conn);
+                MySqlCommand command = new MySqlCommand(procname, conn);
                 //2,设置SQL指令执行存储过程
                 command.CommandType = CommandType.StoredProcedure;
                 //3.判断存储过程参数

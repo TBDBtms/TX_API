@@ -13,30 +13,39 @@ namespace Total_Auto_DAL
         /// 查询品牌
         /// </summary>
         /// <returns></returns>
-        public Task<List<Brand>> BrandsList()
+        public List<Brand> BrandsList()
         {
-            string str = $"select top 10 from Brand ORDER BY BrandId DESC";
-            return Task.FromResult(JcyDBHelper.GetList<Brand>(str));
+            string str = $"select * from Brand ORDER BY BrandId DESC LIMIT 10";
+            return JcyDBHelper.GetList<Brand>(str);
+        }
+        /// <summary>
+        /// 车系数据
+        /// </summary>
+        /// <returns></returns>
+        public List<CarSeries> GetCards()
+        {
+            string str = $"select * from CarSeries LIMIT 10";
+            return JcyDBHelper.GetList<CarSeries>(str);
         }
         /// <summary>
         /// 根据id查询品牌对应的车系
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<List<CarSeries>> CarSeriesList(int id=0)
+        public List<CarSeries> CarSeriesList(int id=0)
         {
             string str = $"select b.CarserName from Brand a JOIN CarSeries b on a.BrandId=b.BrandId where 1=1 and a.BrandId={id}";
-            return Task.FromResult(JcyDBHelper.GetList<CarSeries>(str));
+            return JcyDBHelper.GetList<CarSeries>(str);
         }
         /// <summary>
         /// 获取变速箱下拉
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<List<Gearbox>> GearboxList()
+        public List<Gearbox> GearboxList()
         {
             string str = $"select * from Gearbox";
-            return Task.FromResult(JcyDBHelper.GetList<Gearbox>(str));
+            return JcyDBHelper.GetList<Gearbox>(str);
         }
         /// <summary>
         /// 获取车型下拉

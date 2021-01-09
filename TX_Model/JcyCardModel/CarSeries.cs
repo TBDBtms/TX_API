@@ -17,5 +17,9 @@ namespace Total_Auto_Model.JcyCardModel
         /// 车系名称
         /// </summary>
         public string CarserName { get; set; }
+        /// <summary>
+        /// 品牌id
+        /// </summary>
+        public int BrandId { get; set; }
     }
 }

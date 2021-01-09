@@ -15,7 +15,7 @@ namespace Total_Auto_BLL
         /// 查询品牌
         /// </summary>
         /// <returns></returns>
-        public Task<List<Brand>> BrandsList()
+        public List<Brand> BrandsList()
         {
             return dal.BrandsList();
         }
@@ -24,7 +24,7 @@ namespace Total_Auto_BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<List<CarSeries>> CarSeriesList(int id = 0)
+        public List<CarSeries> CarSeriesList(int id = 0)
         {
             return dal.CarSeriesList(id);
         }
@@ -33,7 +33,7 @@ namespace Total_Auto_BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<List<Gearbox>> GearboxList()
+        public List<Gearbox> GearboxList()
         {
             return dal.GearboxList();
         }
@@ -44,6 +44,14 @@ namespace Total_Auto_BLL
         public Task<List<CarsVison>> CarsVisonList()
         {
             return dal.CarsVisonList();
+        }
+        /// <summary>
+        /// 车系数据
+        /// </summary>
+        /// <returns></returns>
+        public List<CarSeries> GetCards()
+        {
+            return dal.GetCards();
         }
         /// <summary>
         /// 获取里程下拉

@@ -20,9 +20,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>.
         [Route("api/[controller]/BrandsList")]
         [HttpGet]
-        public Task<List<Brand>> BrandsList()
+        public IActionResult BrandsList()
         {
-            return bll.BrandsList();
+            return Ok(bll.BrandsList());
         }
         /// <summary>
         /// 根据id查询品牌对应的车系
@@ -31,9 +31,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/CarSeriesList")]
         [HttpGet]
-        public Task<List<CarSeries>> CarSeriesList(int id = 0)
+        public IActionResult CarSeriesList(int id = 0)
         {
-            return bll.CarSeriesList(id);
+            return Ok(bll.CarSeriesList(id));
         }
         /// <summary>
         /// 获取变速箱下拉
@@ -42,9 +42,19 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/GearboxList")]
         [HttpGet]
-        public Task<List<Gearbox>> GearboxList()
+        public IActionResult GearboxList()
         {
-            return bll.GearboxList();
+            return Ok(bll.GearboxList());
+        }
+        /// <summary>
+        /// 车系数据
+        /// </summary>
+        /// <returns></returns>
+        [Route("api/[controller]/GetCards")]
+        [HttpGet]
+        public IActionResult GetCards()
+        {
+            return Ok(bll.GetCards());
         }
         /// <summary>
         /// 获取车型下拉
@@ -52,9 +62,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/CarsVisonList")]
         [HttpGet]
-        public Task<List<CarsVison>> CarsVisonList()
+        public IActionResult CarsVisonList()
         {
-            return bll.CarsVisonList();
+            return Ok(bll.CarsVisonList());
         }
         /// <summary>
         /// 获取里程下拉
@@ -62,9 +72,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/MileageList")]
         [HttpGet]
-        public Task<List<Mileage>> MileageList()
+        public IActionResult MileageList()
         {
-            return bll.MileageList();
+            return Ok(bll.MileageList());
         }
         /// <summary>
         /// 获取排量下拉
@@ -72,9 +82,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/DisplacementList")]
         [HttpGet]
-        public Task<List<Displacement>> DisplacementList()
+        public IActionResult DisplacementList()
         {
-            return bll.DisplacementList();
+            return Ok(bll.DisplacementList());
         }
         /// <summary>
         /// 获取排放标准
@@ -82,9 +92,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/DischargenormList")]
         [HttpGet]
-        public Task<List<Dischargenorm>> DischargenormList()
+        public IActionResult DischargenormList()
         {
-            return bll.DischargenormList();
+            return Ok(bll.DischargenormList());
         }
         /// <summary>
         /// 获取座位数
@@ -92,9 +102,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/SeatnumList")]
         [HttpGet]
-        public Task<List<Seatnum>> SeatnumList()
+        public IActionResult SeatnumList()
         {
-            return bll.SeatnumList();
+            return Ok(bll.SeatnumList());
         }
         /// <summary>
         /// 获取燃油类型
@@ -102,9 +112,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/FuelTypeList")]
         [HttpGet]
-        public Task<List<FuelType>> FuelTypeList()
+        public IActionResult FuelTypeList()
         {
-            return bll.FuelTypeList();
+            return Ok(bll.FuelTypeList());
         }
         /// <summary>
         /// 获取颜色
@@ -112,9 +122,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/ColorsList")]
         [HttpGet]
-        public Task<List<Colors>> ColorsList()
+        public IActionResult ColorsList()
         {
-            return bll.ColorsList();
+            return Ok(bll.ColorsList());
         }
         /// <summary>
         /// 获取车牌所在地
@@ -122,9 +132,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/CarnumlocationList")]
         [HttpGet]
-        public Task<List<Carnumlocation>> CarnumlocationList()
+        public IActionResult CarnumlocationList()
         {
-            return bll.CarnumlocationList();
+            return Ok(bll.CarnumlocationList());
         }
         /// <summary>
         /// 获取驱动类型
@@ -132,9 +142,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/DriveTypeList")]
         [HttpGet]
-        public Task<List<DriveType>> DriveTypeList()
+        public IActionResult DriveTypeList()
         {
-            return bll.DriveTypeList();
+            return Ok(bll.DriveTypeList());
         }
         /// <summary>
         /// 获取国别
@@ -142,9 +152,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/CountryDistinctList")]
         [HttpGet]
-        public Task<List<CountryDistinct>> CountryDistinctList()
+        public IActionResult CountryDistinctList()
         {
-            return bll.CountryDistinctList();
+            return Ok(bll.CountryDistinctList());
         }
         /// <summary>
         /// 获取国别
@@ -152,9 +162,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/BrightConfigList")]
         [HttpGet]
-        public Task<List<BrightConfig>> BrightConfigList()
+        public IActionResult BrightConfigList()
         {
-            return bll.BrightConfigList();
+            return Ok(bll.BrightConfigList());
         }
         /// <summary>
         /// 获取国别
@@ -162,9 +172,9 @@ namespace Total_Auto_API.Controllers
         /// <returns></returns>
         [Route("api/[controller]/HotSizerList")]
         [HttpGet]
-        public Task<List<HotSizer>> HotSizerList()
+        public IActionResult HotSizerList()
         {
-            return bll.HotSizerList();
+            return Ok(bll.HotSizerList());
         }
     }
 }
