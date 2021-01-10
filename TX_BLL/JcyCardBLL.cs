@@ -29,6 +29,65 @@ namespace Total_Auto_BLL
             return dal.CarSeriesList(id);
         }
         /// <summary>
+        /// 随机获取8条车系数据
+        /// </summary>
+        /// <returns></returns>
+        public List<CarSeries> GetCarSeries()
+        {
+            string str = $"SELECT * FROM CarSeries WHERE CarserId >= (SELECT floor(RAND() * (SELECT MAX(CarserId) FROM CarSeries))) ORDER BY CarserId LIMIT 0,8";
+            return JcyDBHelper.GetList<CarSeries>(str);
+        }
+        /// <summary>
+        /// 品牌查询数据
+        /// </summary>
+        /// <param name="ppname"></param>
+        /// <returns></returns>
+        public List<CardInfo> CardInfoPPList(string ppname = "")
+        {
+            return dal.CardInfoPPList(ppname);
+        }
+        /// <summary>
+        /// 车系查询数据
+        /// </summary>
+        /// <param name="cxname"></param>
+        /// <returns></returns>
+        public List<CardInfo> CardInfoCxList(string cxname = "")
+        {
+            return dal.CardInfoCxList(cxname);
+        }
+        /// <summary>
+        /// 价格查询
+        /// </summary>
+        /// <param name="jgname"></param>
+        /// <param name="startprice"></param>
+        /// <param name="endprice"></param>
+        /// <returns></returns>
+        public List<CardInfo> CardInfoJGList(string jgname = "", decimal startprice = 0, decimal endprice = 0)
+        {
+            return dal.CardInfoJGList(jgname,startprice,endprice);
+        }
+        /// <summary>
+        /// 查询下拉框
+        /// </summary>
+        /// <param name="agecard"></param>
+        /// <param name="bsx"></param>
+        /// <param name="cx"></param>
+        /// <param name="kms"></param>
+        /// <param name="pl"></param>
+        /// <param name="pfbz"></param>
+        /// <param name="zws"></param>
+        /// <param name="rylx"></param>
+        /// <param name="color"></param>
+        /// <param name="cardszd"></param>
+        /// <param name="qdlx"></param>
+        /// <param name="countryb"></param>
+        /// <param name="lightCoig"></param>
+        /// <returns></returns>
+        public List<CardInfo> CardInfoCofigList(int agecard = 0, int bsx = 0, int cx = 0, int kms = 0, int pl = 0, int pfbz = 0, int zws = 0, int rylx = 0, int color = 0, int cardszd = 0, int qdlx = 0, int countryb = 0, int lightCoig = 0)
+        {
+            return dal.CardInfoCofigList(agecard,bsx,cx,kms,pl,pfbz,zws,rylx,color,cardszd,qdlx,countryb,lightCoig);
+        }
+        /// <summary>
         /// 获取变速箱下拉
         /// </summary>
         /// <param name="id"></param>

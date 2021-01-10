@@ -36,6 +36,74 @@ namespace Total_Auto_API.Controllers
             return Ok(bll.CarSeriesList(id));
         }
         /// <summary>
+        /// 品牌查询数据
+        /// </summary>
+        /// <param name="ppname"></param>
+        /// <returns></returns>
+        [Route("api/[controller]/CardInfoPPList")]
+        [HttpGet]
+        public IActionResult CardInfoPPList(string ppname = "")
+        {
+            return Ok(bll.CardInfoPPList(ppname));
+        }
+        /// <summary>
+        /// 车系查询数据
+        /// </summary>
+        /// <param name="cxname"></param>
+        /// <returns></returns>
+        [Route("api/[controller]/CardInfoCxList")]
+        [HttpGet]
+        public IActionResult CardInfoCxList(string cxname = "")
+        {
+            return Ok(bll.CardInfoCxList(cxname));
+        }
+        /// <summary>
+        /// 随机获取8条车系数据
+        /// </summary>
+        /// <returns></returns>
+        [Route("api/[controller]/GetCarSeries")]
+        [HttpGet]
+        public IActionResult GetCarSeries()
+        {
+            return Ok(bll.GetCarSeries());
+        }
+        /// <summary>
+        /// 价格查询
+        /// </summary>
+        /// <param name="jgname"></param>
+        /// <param name="startprice"></param>
+        /// <param name="endprice"></param>
+        /// <returns></returns>
+        [Route("api/[controller]/CardInfoJGList")]
+        [HttpGet]
+        public IActionResult CardInfoJGList(string jgname = "", decimal startprice = 0, decimal endprice = 0)
+        {
+            return Ok(bll.CardInfoJGList(jgname, startprice, endprice));
+        }
+        /// <summary>
+        /// 查询下拉框
+        /// </summary>
+        /// <param name="agecard"></param>
+        /// <param name="bsx"></param>
+        /// <param name="cx"></param>
+        /// <param name="kms"></param>
+        /// <param name="pl"></param>
+        /// <param name="pfbz"></param>
+        /// <param name="zws"></param>
+        /// <param name="rylx"></param>
+        /// <param name="color"></param>
+        /// <param name="cardszd"></param>
+        /// <param name="qdlx"></param>
+        /// <param name="countryb"></param>
+        /// <param name="lightCoig"></param>
+        /// <returns></returns>
+        [Route("api/[controller]/CardInfoCofigList")]
+        [HttpGet]
+        public IActionResult CardInfoCofigList(int agecard = 0, int bsx = 0, int cx = 0, int kms = 0, int pl = 0, int pfbz = 0, int zws = 0, int rylx = 0, int color = 0, int cardszd = 0, int qdlx = 0, int countryb = 0, int lightCoig = 0)
+        {
+            return Ok(bll.CardInfoCofigList(agecard, bsx, cx, kms, pl, pfbz, zws, rylx, color, cardszd, qdlx, countryb, lightCoig));
+        }
+        /// <summary>
         /// 获取变速箱下拉
         /// </summary>
         /// <param name="id"></param>

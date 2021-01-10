@@ -28,6 +28,15 @@ namespace Total_Auto_DAL
             return JcyDBHelper.GetList<CarSeries>(str);
         }
         /// <summary>
+        /// 随机获取7条车系数据
+        /// </summary>
+        /// <returns></returns>
+        public List<CarSeries> GetCarSeries()
+        {
+            string str = $"SELECT * FROM CarSeries WHERE CarserId >= (SELECT floor(RAND() * (SELECT MAX(CarserId) FROM CarSeries))) ORDER BY CarserId LIMIT 0,7";
+            return JcyDBHelper.GetList<CarSeries>(str);
+        }
+        /// <summary>
         /// 根据id查询品牌对应的车系
         /// </summary>
         /// <param name="id"></param>
@@ -36,6 +45,156 @@ namespace Total_Auto_DAL
         {
             string str = $"select b.CarserName from Brand a JOIN CarSeries b on a.BrandId=b.BrandId where 1=1 and a.BrandId={id}";
             return JcyDBHelper.GetList<CarSeries>(str);
+        }
+        /// <summary>
+        /// 品牌查询数据
+        /// </summary>
+        /// <param name="ppname"></param>
+        /// <returns></returns>
+        public List<CardInfo> CardInfoPPList(string ppname="")
+        {
+            string str = $"select * from CardInfo a join Brand b on a.BrandId=b.BrandId where 1=1";
+            if (!string.IsNullOrEmpty(ppname))
+            {
+                str += $" and a.BrandName like '%{ppname}%'";
+            }
+            return JcyDBHelper.GetList<CardInfo>(str);
+        }
+        /// <summary>
+        /// 车系查询数据
+        /// </summary>
+        /// <param name="cxname"></param>
+        /// <returns></returns>
+        public List<CardInfo> CardInfoCxList(string cxname = "")
+        {
+            string str = $"select * from CardInfo a join CarSeries b on a.CarserId=b.CarserId where 1=1";
+            if (!string.IsNullOrEmpty(cxname))
+            {
+                str += $" and a.CarserName like '%{cxname}%'";
+            }
+            return JcyDBHelper.GetList<CardInfo>(str);
+        }
+        /// <summary>
+        /// 价格查询
+        /// </summary>
+        /// <param name="jgname"></param>
+        /// <param name="startprice"></param>
+        /// <param name="endprice"></param>
+        /// <returns></returns>
+        public List<CardInfo> CardInfoJGList(string jgname = "",decimal startprice=0,decimal endprice=0)
+        {
+            string str = $"select * from CardInfo where 1=1";
+            if (!string.IsNullOrEmpty(jgname)&&jgname=="3万以下")
+            {
+                str += $" and a.Price<3";
+            }
+            if (!string.IsNullOrEmpty(jgname) && jgname == "3-5万")
+            {
+                str += $" and a.Price>=3 and a.Price<=5";
+            }
+            if (!string.IsNullOrEmpty(jgname) && jgname == "5-7万")
+            {
+                str += $" and a.Price>=5 and a.Price<=7";
+            }
+            if (!string.IsNullOrEmpty(jgname) && jgname == "7-9万")
+            {
+                str += $" and a.Price>=7 and a.Price<=9";
+            }
+            if (!string.IsNullOrEmpty(jgname) && jgname == "9-12万")
+            {
+                str += $" and a.Price>=9 and a.Price<=12";
+            }
+            if (!string.IsNullOrEmpty(jgname) && jgname == "12-16万")
+            {
+                str += $" and a.Price>=12 and a.Price<=16";
+            }
+            if (!string.IsNullOrEmpty(jgname) && jgname == "16-20万")
+            {
+                str += $" and a.Price>=16 and a.Price<=20";
+            }
+            if (!string.IsNullOrEmpty(jgname) && jgname == "20万以上")
+            {
+                str += $" and a.Price>20";
+            }
+            if (startprice>0&&endprice>0)
+            {
+                str += $" and a.Price between {startprice} and {endprice}";
+            }
+            return JcyDBHelper.GetList<CardInfo>(str);
+        }
+        /// <summary>
+        /// 查询下拉框
+        /// </summary>
+        /// <param name="agecard"></param>
+        /// <param name="bsx"></param>
+        /// <param name="cx"></param>
+        /// <param name="kms"></param>
+        /// <param name="pl"></param>
+        /// <param name="pfbz"></param>
+        /// <param name="zws"></param>
+        /// <param name="rylx"></param>
+        /// <param name="color"></param>
+        /// <param name="cardszd"></param>
+        /// <param name="qdlx"></param>
+        /// <param name="countryb"></param>
+        /// <param name="lightCoig"></param>
+        /// <returns></returns>
+        public List<CardInfo> CardInfoCofigList(int agecard=0,int bsx=0,int cx=0,int kms=0,int pl=0,int pfbz=0,int zws=0,int rylx=0,int color=0,int cardszd=0,int qdlx=0,int countryb=0,int lightCoig=0)
+        {
+            string str = $"select * from CardInfo a join  CarAge b on a.AgeId = b.AgeId join Gearbox c on a.GearboxId = c.GearboxId join  CarsVison d on a.CarsVisonId = d.CarsVisonId join  Mileage e on a.MileageId = e.MileageId join Displacement f on a.DisplacementId = f.DisplacementId join Dischargenorm g on a.DisId = g.DisId join Seatnum h on a.SeatnumId = h.SeatnumId join FuelType i on a.FuelTypeId = i.FuelTypeId JOIN  Colors j on a.ColorId = j.ColorId join Carnumlocation k on a.CarnumId = k.CarnumId join DriveType l on a.DriveTypeId = l.DriveTypeId join CountryDistinct m on a.CountryDisId = m.CountryDisId join BrightConfig n on a.ConfigId = n.ConfigId where 1 = 1";
+            if (agecard>0)
+            {
+                str += $"  and b.AgeId={agecard}";
+            }
+            if (bsx > 0)
+            {
+                str += $" and c.GearboxId={bsx}";
+            }
+            if (cx > 0)
+            {
+                str += $" and d.CarsVisonId={cx}";
+            }
+            if (kms > 0)
+            {
+                str += $" and e.MileageId={kms}";
+            }
+            if (pl > 0)
+            {
+                str += $" and f.DisplacementId={pl}";
+            }
+            if (pfbz > 0)
+            {
+                str += $" and g.DisId={pfbz}";
+            }
+            if (zws > 0)
+            {
+                str += $" and h.SeatnumId={zws}";
+            }
+            if (rylx > 0)
+            {
+                str += $" and i.FuelTypeId={rylx}";
+            }
+            if (color > 0)
+            {
+                str += $" and j.ColorId={color}";
+            }
+            if (cardszd > 0)
+            {
+                str += $" and k.CarnumId={cardszd}";
+            }
+            if (qdlx > 0)
+            {
+                str += $" and l.DriveTypeId={qdlx}";
+            }
+            if (countryb > 0)
+            {
+                str += $" and m.CountryDisId={countryb}";
+            }
+            if (lightCoig > 0)
+            {
+                str += $" and n.ConfigId={lightCoig}";
+            }
+            return JcyDBHelper.GetList<CardInfo>(str);
         }
         /// <summary>
         /// 获取变速箱下拉
