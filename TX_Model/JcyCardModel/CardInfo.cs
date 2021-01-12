@@ -105,5 +105,9 @@ namespace Total_Auto_Model.JcyCardModel
         /// 亮点配置
         /// </summary>
         public int ConfigId { get; set; }
+        /// <summary>
+        /// 图片
+        /// </summary>
+        public string PhotoCar { get; set; }
     }
 }

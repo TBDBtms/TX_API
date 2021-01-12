@@ -28,12 +28,12 @@ namespace Total_Auto_DAL
             return JcyDBHelper.GetList<CarSeries>(str);
         }
         /// <summary>
-        /// 随机获取7条车系数据
+        /// 随机获取车系数据
         /// </summary>
         /// <returns></returns>
         public List<CarSeries> GetCarSeries()
         {
-            string str = $"SELECT * FROM CarSeries WHERE CarserId >= (SELECT floor(RAND() * (SELECT MAX(CarserId) FROM CarSeries))) ORDER BY CarserId LIMIT 0,7";
+            string str = $"SELECT * FROM CarSeries WHERE CarserId >= (SELECT floor(RAND() * (SELECT MAX(CarserId) FROM CarSeries))) ORDER BY CarserId LIMIT 0,8";
             return JcyDBHelper.GetList<CarSeries>(str);
         }
         /// <summary>
@@ -123,7 +123,7 @@ namespace Total_Auto_DAL
             return JcyDBHelper.GetList<CardInfo>(str);
         }
         /// <summary>
-        /// 查询下拉框
+        /// 查询下拉框获取车辆数据
         /// </summary>
         /// <param name="agecard"></param>
         /// <param name="bsx"></param>
