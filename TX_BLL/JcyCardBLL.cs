@@ -83,9 +83,9 @@ namespace Total_Auto_BLL
         /// <param name="countryb"></param>
         /// <param name="lightCoig"></param>
         /// <returns></returns>
-        public List<CardInfo> CardInfoCofigList(int agecard = 0, int bsx = 0, int cx = 0, int kms = 0, int pl = 0, int pfbz = 0, int zws = 0, int rylx = 0, int color = 0, int cardszd = 0, int qdlx = 0, int countryb = 0, int lightCoig = 0)
+        public List<CardInfo> CardInfoCofigList(string name = "", int agecard = 0, int bsx = 0, int cx = 0, int kms = 0, int pl = 0, int pfbz = 0, int zws = 0, int rylx = 0, int color = 0, int cardszd = 0, int qdlx = 0, int countryb = 0, int lightCoig = 0)
         {
-            return dal.CardInfoCofigList(agecard,bsx,cx,kms,pl,pfbz,zws,rylx,color,cardszd,qdlx,countryb,lightCoig);
+            return dal.CardInfoCofigList(name,agecard,bsx,cx,kms,pl,pfbz,zws,rylx,color,cardszd,qdlx,countryb,lightCoig);
         }
         /// <summary>
         /// 获取变速箱下拉

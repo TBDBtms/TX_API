@@ -139,9 +139,13 @@ namespace Total_Auto_DAL
         /// <param name="countryb"></param>
         /// <param name="lightCoig"></param>
         /// <returns></returns>
-        public List<CardInfo> CardInfoCofigList(int agecard=0,int bsx=0,int cx=0,int kms=0,int pl=0,int pfbz=0,int zws=0,int rylx=0,int color=0,int cardszd=0,int qdlx=0,int countryb=0,int lightCoig=0)
+        public List<CardInfo> CardInfoCofigList(string name="",int agecard=0,int bsx=0,int cx=0,int kms=0,int pl=0,int pfbz=0,int zws=0,int rylx=0,int color=0,int cardszd=0,int qdlx=0,int countryb=0,int lightCoig=0)
         {
             string str = $"select * from CardInfo a join  CarAge b on a.AgeId = b.AgeId join Gearbox c on a.GearboxId = c.GearboxId join  CarsVison d on a.CarsVisonId = d.CarsVisonId join  Mileage e on a.MileageId = e.MileageId join Displacement f on a.DisplacementId = f.DisplacementId join Dischargenorm g on a.DisId = g.DisId join Seatnum h on a.SeatnumId = h.SeatnumId join FuelType i on a.FuelTypeId = i.FuelTypeId JOIN  Colors j on a.ColorId = j.ColorId join Carnumlocation k on a.CarnumId = k.CarnumId join DriveType l on a.DriveTypeId = l.DriveTypeId join CountryDistinct m on a.CountryDisId = m.CountryDisId join BrightConfig n on a.ConfigId = n.ConfigId where 1 = 1";
+            if (!string.IsNullOrEmpty(name))
+            {
+                str += $" and a.CardName like '%{name}%'";
+            }
             if (agecard>0)
             {
                 str += $"  and b.AgeId={agecard}";
