@@ -109,5 +109,15 @@ namespace Total_Auto_Model.JcyCardModel
         /// 图片
         /// </summary>
         public string PhotoCar { get; set; }
+        /// <summary>
+        /// 排量name
+        /// </summary>
+        public string DisplacementName { get; set; }
+        /// <summary>
+        /// 变速箱name
+        /// </summary>
+        public string GearboxName { get; set; }
+
+
     }
 }

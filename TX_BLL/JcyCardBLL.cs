@@ -77,6 +77,15 @@ namespace Total_Auto_BLL
             return dal.CardInfoCofigList(name,brandId,CardId,priceId,startprice,endprice,agecard,bsx,cx,kms,pl,pfbz,zws,rylx,color,cardszd,qdlx,countryb,lightCoig);
         }
         /// <summary>
+        /// 返填车辆信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public CardInfo ShowCardId(int id)
+        {
+            return dal.ShowCardId(id);
+        }
+        /// <summary>
         /// 获取价格区间
         /// </summary>
         /// <returns></returns>

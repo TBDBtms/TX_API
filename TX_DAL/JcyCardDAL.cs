@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Total_Auto_Model;
@@ -82,6 +83,32 @@ namespace Total_Auto_DAL
         {
             string str = $"select * from  CarsPrice";
             return JcyDBHelper.GetList<CarsPrice>(str);
+        }
+        /// <summary>
+        /// 返填车辆信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public CardInfo ShowCardId(int id)
+        {
+            try
+            {
+                string str = $"select * from CardInfo a join  CarAge b on a.AgeId = b.AgeId join Gearbox c on a.GearboxId = c.GearboxId join  CarsVison d on a.CarsVisonId = d.CarsVisonId join  Mileage e on a.MileageId = e.MileageId join Displacement f on a.DisplacementId = f.DisplacementId join Dischargenorm g on a.DisId = g.DisId join Seatnum h on a.SeatnumId = h.SeatnumId join FuelType i on a.FuelTypeId = i.FuelTypeId JOIN  Colors j on a.ColorId = j.ColorId join Carnumlocation k on a.CarnumId = k.CarnumId join DriveType l on a.DriveTypeId = l.DriveTypeId join CountryDistinct m on a.CountryDisId = m.CountryDisId join BrightConfig n on a.ConfigId = n.ConfigId join Brand o on a.BrandId=o.BrandId join CarSeries p on a.CarserId=p.CarserId  where a.CardId={id}";
+                var list = JcyDBHelper.GetList<CardInfo>(str).ToList();
+                if (list.Count > 0)
+                {
+                    return list.First();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         /// <summary>
         /// 查询下拉框获取车辆数据

@@ -101,6 +101,17 @@ namespace Total_Auto_API.Controllers
             return Ok(bll.CardInfoCofigList(name, brandId, CardId, priceId, startprice, endprice, agecard, bsx, cx, kms, pl, pfbz, zws, rylx, color, cardszd, qdlx, countryb, lightCoig));
         }
         /// <summary>
+        /// 返填车辆信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("api/[controller]/ShowCardId")]
+        [HttpGet]
+        public IActionResult ShowCardId(int id)
+        {
+            return Ok(bll.ShowCardId(id));
+        }
+        /// <summary>
         /// 获取变速箱下拉
         /// </summary>
         /// <param name="id"></param>
