@@ -118,6 +118,10 @@ namespace Total_Auto_Model.JcyCardModel
         /// </summary>
         public string GearboxName { get; set; }
 
-
+        public string TopPhoto { get; set; }
+        public string LeftPhoto { get; set; }
+        public string RightPhoto { get; set; }
+        public string DownPhoto { get; set; }
+        public string Qphoto { get; set; }
     }
 }
