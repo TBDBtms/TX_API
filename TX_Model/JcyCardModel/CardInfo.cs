@@ -36,7 +36,7 @@ namespace Total_Auto_Model.JcyCardModel
         /// <summary>
         /// 价格
         /// </summary>
-        public decimal Price { get; set; }
+        public float Price { get; set; }
         /// <summary>
         /// 查询选项
         /// </summary>
