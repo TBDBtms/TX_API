@@ -9,7 +9,7 @@ namespace Total_Auto_DAL
 {
     public static class ZHQDBhelper
     {
-        static string str = "server=127.0.0.1;database=db0817;uid=root;pwd=121112";
+        static string str = "server=127.0.0.1;database=worldcards;uid=root;pwd=123456";
         public static List<T> GetList<T>(string sql)
             {
                 using (SqlConnection conn = new SqlConnection(str))  //查询

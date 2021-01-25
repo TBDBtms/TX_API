@@ -333,7 +333,7 @@ namespace Total_Auto_DAL
             return Task.FromResult(JcyDBHelper.GetList<CountryDistinct>(str));
         }
         /// <summary>
-        /// 获取国别
+        /// 亮点配置
         /// </summary>
         /// <returns></returns>
         public Task<List<BrightConfig>> BrightConfigList()
@@ -342,7 +342,7 @@ namespace Total_Auto_DAL
             return Task.FromResult(JcyDBHelper.GetList<BrightConfig>(str));
         }
         /// <summary>
-        /// 获取国别
+        /// 热门筛选
         /// </summary>
         /// <returns></returns>
         public Task<List<HotSizer>> HotSizerList()
