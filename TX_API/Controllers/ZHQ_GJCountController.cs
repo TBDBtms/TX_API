@@ -65,6 +65,5 @@ namespace Total_Auto_API.Controllers
         {
             return Ok(bll.GetKS());
         }
-     
     }
 }

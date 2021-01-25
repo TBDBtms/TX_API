@@ -9,7 +9,7 @@ namespace Total_Auto_DAL.DLH_User_DAL
 {
     public class DLH_DBHelper
     {
-        static string str = "server=127.0.0.1;database=DB_TX_Database;uid=root;pwd=123456";
+        static string str = "server=127.0.0.1;database=worldcards;uid=root;pwd=123456";
         public static List<T> GetList<T>(string sql)
         {
             using (MySqlConnection conn = new MySqlConnection(str))  //查询
