@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Total_Auto_DAL;
-using Total_Auto_Model;
 using Total_Auto_Model.JcyCardModel;
 
 namespace Total_Auto_BLL
 {
-    public class JcyCardBLL
+    public class JcyCarBLL
     {
         JcyCardDAL dal = new JcyCardDAL();
         /// <summary>
@@ -74,7 +73,7 @@ namespace Total_Auto_BLL
         /// <returns></returns>
         public List<CardInfo> CardInfoCofigList(string name = "", int brandId = 0, int CardId = 0, int priceId = 0, decimal startprice = 0, decimal endprice = 0, int agecard = 0, int bsx = 0, int cx = 0, int kms = 0, int pl = 0, int pfbz = 0, int zws = 0, int rylx = 0, int color = 0, int cardszd = 0, int qdlx = 0, int countryb = 0, int lightCoig = 0)
         {
-            return dal.CardInfoCofigList(name,brandId,CardId,priceId,startprice,endprice,agecard,bsx,cx,kms,pl,pfbz,zws,rylx,color,cardszd,qdlx,countryb,lightCoig);
+            return dal.CardInfoCofigList(name, brandId, CardId, priceId, startprice, endprice, agecard, bsx, cx, kms, pl, pfbz, zws, rylx, color, cardszd, qdlx, countryb, lightCoig);
         }
         /// <summary>
         /// 返填车辆信息
@@ -205,6 +204,14 @@ namespace Total_Auto_BLL
         public Task<List<HotSizer>> HotSizerList()
         {
             return dal.HotSizerList();
+        }
+        /// <summary>
+        /// 车龄
+        /// </summary>
+        /// <returns></returns>
+        public Task<List<CarAge>> GetCarAge()
+        {
+            return dal.GetCarAge();
         }
     }
 }

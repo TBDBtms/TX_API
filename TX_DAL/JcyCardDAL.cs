@@ -350,6 +350,14 @@ namespace Total_Auto_DAL
             string str = $"select * from HotSizer";
             return Task.FromResult(JcyDBHelper.GetList<HotSizer>(str));
         }
-
+        /// <summary>
+        /// 车龄
+        /// </summary>
+        /// <returns></returns>
+        public Task<List<CarAge>> GetCarAge()
+        {
+            string str = $"select * from CarAge";
+            return Task.FromResult(JcyDBHelper.GetList<CarAge>(str));
+        }
     }
 }

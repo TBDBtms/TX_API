@@ -12,8 +12,7 @@ namespace Total_Auto_API.Controllers
     [ApiController]
     public class JcyCardsController : ControllerBase
     {
-
-        JcyCardBLL bll = new JcyCardBLL();
+        JcyCarBLL bll = new JcyCarBLL();
         /// <summary>
         /// 查询品牌
         /// </summary>
@@ -34,6 +33,15 @@ namespace Total_Auto_API.Controllers
         public IActionResult CarSeriesList(int id = 0)
         {
             return Ok(bll.CarSeriesList(id));
+        }
+        /// <summary>
+        /// 车龄
+        /// </summary>
+        /// <returns></returns>
+        [Route("api/[controller]/GetCarAge")]
+        public IActionResult GetCarAge()
+        {
+            return Ok(bll.GetCarAge());
         }
         /// <summary>
         /// 品牌查询数据
