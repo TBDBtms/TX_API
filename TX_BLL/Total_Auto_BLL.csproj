@@ -7,11 +7,11 @@
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.22" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TX_Model\Total Auto_Model.csproj" />
+    <ProjectReference Include="..\TX_DAL\Total_Auto_DAL.csproj" />
+    <ProjectReference Include="..\TX_Model\Total_Auto_Model.csproj" />
   </ItemGroup>
 
 </Project>
