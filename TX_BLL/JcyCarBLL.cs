@@ -19,6 +19,14 @@ namespace Total_Auto_BLL
             return dal.BrandsList();
         }
         /// <summary>
+        /// 排序
+        /// </summary>
+        /// <returns></returns>
+        public List<CardInfo> GetdescInfo()
+        {
+            return dal.GetdescInfo();
+        }
+        /// <summary>
         /// 根据id查询品牌对应的车系
         /// </summary>
         /// <param name="id"></param>

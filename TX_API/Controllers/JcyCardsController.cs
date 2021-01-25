@@ -24,6 +24,16 @@ namespace Total_Auto_API.Controllers
             return Ok(bll.BrandsList());
         }
         /// <summary>
+        /// 排序
+        /// </summary>
+        /// <returns></returns>
+        [Route("api/[controller]/GetdescInfo")]
+        [HttpGet]
+        public IActionResult GetdescInfo()
+        {
+            return Ok(bll.GetdescInfo());
+        }
+        /// <summary>
         /// 根据id查询品牌对应的车系
         /// </summary>
         /// <param name="id"></param>
