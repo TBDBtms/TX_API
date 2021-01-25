@@ -105,5 +105,23 @@ namespace Total_Auto_Model.JcyCardModel
         /// 亮点配置
         /// </summary>
         public int ConfigId { get; set; }
+        /// <summary>
+        /// 图片
+        /// </summary>
+        public string PhotoCar { get; set; }
+        /// <summary>
+        /// 排量name
+        /// </summary>
+        public string DisplacementName { get; set; }
+        /// <summary>
+        /// 变速箱name
+        /// </summary>
+        public string GearboxName { get; set; }
+
+        public string TopPhoto { get; set; }
+        public string LeftPhoto { get; set; }
+        public string RightPhoto { get; set; }
+        public string DownPhoto { get; set; }
+        public string Qphoto { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Total_Auto_Model;
@@ -28,12 +29,12 @@ namespace Total_Auto_DAL
             return JcyDBHelper.GetList<CarSeries>(str);
         }
         /// <summary>
-        /// 随机获取7条车系数据
+        /// 随机获取车系数据
         /// </summary>
         /// <returns></returns>
         public List<CarSeries> GetCarSeries()
         {
-            string str = $"SELECT * FROM CarSeries WHERE CarserId >= (SELECT floor(RAND() * (SELECT MAX(CarserId) FROM CarSeries))) ORDER BY CarserId LIMIT 0,7";
+            string str = $"SELECT * FROM CarSeries WHERE CarserId >= (SELECT floor(RAND() * (SELECT MAX(CarserId) FROM CarSeries))) ORDER BY CarserId LIMIT 0,8";
             return JcyDBHelper.GetList<CarSeries>(str);
         }
         /// <summary>
@@ -41,7 +42,7 @@ namespace Total_Auto_DAL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<CarSeries> CarSeriesList(int id=0)
+        public List<CarSeries> CarSeriesList(int id = 0)
         {
             string str = $"select b.CarserName from Brand a JOIN CarSeries b on a.BrandId=b.BrandId where 1=1 and a.BrandId={id}";
             return JcyDBHelper.GetList<CarSeries>(str);
@@ -51,7 +52,7 @@ namespace Total_Auto_DAL
         /// </summary>
         /// <param name="ppname"></param>
         /// <returns></returns>
-        public List<CardInfo> CardInfoPPList(string ppname="")
+        public List<CardInfo> CardInfoPPList(string ppname = "")
         {
             string str = $"select * from CardInfo a join Brand b on a.BrandId=b.BrandId where 1=1";
             if (!string.IsNullOrEmpty(ppname))
@@ -75,55 +76,42 @@ namespace Total_Auto_DAL
             return JcyDBHelper.GetList<CardInfo>(str);
         }
         /// <summary>
-        /// 价格查询
+        /// 获取价格区间
         /// </summary>
-        /// <param name="jgname"></param>
-        /// <param name="startprice"></param>
-        /// <param name="endprice"></param>
         /// <returns></returns>
-        public List<CardInfo> CardInfoJGList(string jgname = "",decimal startprice=0,decimal endprice=0)
+        public List<CarsPrice> GetPrices()
         {
-            string str = $"select * from CardInfo where 1=1";
-            if (!string.IsNullOrEmpty(jgname)&&jgname=="3万以下")
-            {
-                str += $" and a.Price<3";
-            }
-            if (!string.IsNullOrEmpty(jgname) && jgname == "3-5万")
-            {
-                str += $" and a.Price>=3 and a.Price<=5";
-            }
-            if (!string.IsNullOrEmpty(jgname) && jgname == "5-7万")
-            {
-                str += $" and a.Price>=5 and a.Price<=7";
-            }
-            if (!string.IsNullOrEmpty(jgname) && jgname == "7-9万")
-            {
-                str += $" and a.Price>=7 and a.Price<=9";
-            }
-            if (!string.IsNullOrEmpty(jgname) && jgname == "9-12万")
-            {
-                str += $" and a.Price>=9 and a.Price<=12";
-            }
-            if (!string.IsNullOrEmpty(jgname) && jgname == "12-16万")
-            {
-                str += $" and a.Price>=12 and a.Price<=16";
-            }
-            if (!string.IsNullOrEmpty(jgname) && jgname == "16-20万")
-            {
-                str += $" and a.Price>=16 and a.Price<=20";
-            }
-            if (!string.IsNullOrEmpty(jgname) && jgname == "20万以上")
-            {
-                str += $" and a.Price>20";
-            }
-            if (startprice>0&&endprice>0)
-            {
-                str += $" and a.Price between {startprice} and {endprice}";
-            }
-            return JcyDBHelper.GetList<CardInfo>(str);
+            string str = $"select * from  CarsPrice";
+            return JcyDBHelper.GetList<CarsPrice>(str);
         }
         /// <summary>
-        /// 查询下拉框
+        /// 返填车辆信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public CardInfo ShowCardId(int id)
+        {
+            try
+            {
+                string str = $"select * from CardInfo a join  CarAge b on a.AgeId = b.AgeId join Gearbox c on a.GearboxId = c.GearboxId join  CarsVison d on a.CarsVisonId = d.CarsVisonId join  Mileage e on a.MileageId = e.MileageId join Displacement f on a.DisplacementId = f.DisplacementId join Dischargenorm g on a.DisId = g.DisId join Seatnum h on a.SeatnumId = h.SeatnumId join FuelType i on a.FuelTypeId = i.FuelTypeId JOIN  Colors j on a.ColorId = j.ColorId join Carnumlocation k on a.CarnumId = k.CarnumId join DriveType l on a.DriveTypeId = l.DriveTypeId join CountryDistinct m on a.CountryDisId = m.CountryDisId join BrightConfig n on a.ConfigId = n.ConfigId join Brand o on a.BrandId=o.BrandId join CarSeries p on a.CarserId=p.CarserId join CardPhoto z on a.CardId=z.PhotoId  where a.CardId={id}";
+                var list = JcyDBHelper.GetList<CardInfo>(str).ToList();
+                if (list.Count > 0)
+                {
+                    return list.First();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        /// <summary>
+        /// 查询下拉框获取车辆数据
         /// </summary>
         /// <param name="agecard"></param>
         /// <param name="bsx"></param>
@@ -139,10 +127,58 @@ namespace Total_Auto_DAL
         /// <param name="countryb"></param>
         /// <param name="lightCoig"></param>
         /// <returns></returns>
-        public List<CardInfo> CardInfoCofigList(int agecard=0,int bsx=0,int cx=0,int kms=0,int pl=0,int pfbz=0,int zws=0,int rylx=0,int color=0,int cardszd=0,int qdlx=0,int countryb=0,int lightCoig=0)
+        public List<CardInfo> CardInfoCofigList(string name = "", int brandId = 0, int CardId = 0, int priceId = 0, decimal startprice = 0, decimal endprice = 0, int agecard = 0, int bsx = 0, int cx = 0, int kms = 0, int pl = 0, int pfbz = 0, int zws = 0, int rylx = 0, int color = 0, int cardszd = 0, int qdlx = 0, int countryb = 0, int lightCoig = 0)
         {
-            string str = $"select * from CardInfo a join  CarAge b on a.AgeId = b.AgeId join Gearbox c on a.GearboxId = c.GearboxId join  CarsVison d on a.CarsVisonId = d.CarsVisonId join  Mileage e on a.MileageId = e.MileageId join Displacement f on a.DisplacementId = f.DisplacementId join Dischargenorm g on a.DisId = g.DisId join Seatnum h on a.SeatnumId = h.SeatnumId join FuelType i on a.FuelTypeId = i.FuelTypeId JOIN  Colors j on a.ColorId = j.ColorId join Carnumlocation k on a.CarnumId = k.CarnumId join DriveType l on a.DriveTypeId = l.DriveTypeId join CountryDistinct m on a.CountryDisId = m.CountryDisId join BrightConfig n on a.ConfigId = n.ConfigId where 1 = 1";
-            if (agecard>0)
+            string str = $"select * from CardInfo a join  CarAge b on a.AgeId = b.AgeId join Gearbox c on a.GearboxId = c.GearboxId join  CarsVison d on a.CarsVisonId = d.CarsVisonId join  Mileage e on a.MileageId = e.MileageId join Displacement f on a.DisplacementId = f.DisplacementId join Dischargenorm g on a.DisId = g.DisId join Seatnum h on a.SeatnumId = h.SeatnumId join FuelType i on a.FuelTypeId = i.FuelTypeId JOIN  Colors j on a.ColorId = j.ColorId join Carnumlocation k on a.CarnumId = k.CarnumId join DriveType l on a.DriveTypeId = l.DriveTypeId join CountryDistinct m on a.CountryDisId = m.CountryDisId join BrightConfig n on a.ConfigId = n.ConfigId join Brand o on a.BrandId=o.BrandId join CarSeries p on a.CarserId=p.CarserId  where 1 = 1";
+            if (!string.IsNullOrEmpty(name))
+            {
+                str += $" and a.CardName like '%{name}%'";
+            }
+            if (brandId > 0)
+            {
+                str += $" and o.BrandId={brandId}";
+            }
+            if (CardId > 0)
+            {
+                str += $" and p.CarserId={CardId}";
+            }
+            if (priceId > 0 && priceId == 1)
+            {
+                str += $" and a.Price<=3";
+            }
+            if (priceId > 0 && priceId == 2)
+            {
+                str += $" and a.Price >= 3 and a.Price<=5";
+            }
+            if (priceId > 0 && priceId == 3)
+            {
+                str += $" and a.Price>= 5 and a.Price<=7";
+            }
+            if (priceId > 0 && priceId == 4)
+            {
+                str += $" and a.Price>=7 and a.Price<=9";
+            }
+            if (priceId > 0 && priceId == 5)
+            {
+                str += $" and a.Price>=9 and a.Price<=12";
+            }
+            if (priceId > 0 && priceId == 6)
+            {
+                str += $" and a.Price>=12 and a.Price<=16";
+            }
+            if (priceId > 0 && priceId == 7)
+            {
+                str += $" and a.Price>=16 and a.Price<=20";
+            }
+            if (priceId > 0 && priceId == 8)
+            {
+                str += $" and a.Price>20";
+            }
+            if (startprice > 0 && endprice > 0)
+            {
+                str += $" and a.Price between {startprice} and {endprice}";
+            }
+            if (agecard > 0)
             {
                 str += $"  and b.AgeId={agecard}";
             }

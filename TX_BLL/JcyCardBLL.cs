@@ -56,17 +56,6 @@ namespace Total_Auto_BLL
             return dal.CardInfoCxList(cxname);
         }
         /// <summary>
-        /// 价格查询
-        /// </summary>
-        /// <param name="jgname"></param>
-        /// <param name="startprice"></param>
-        /// <param name="endprice"></param>
-        /// <returns></returns>
-        public List<CardInfo> CardInfoJGList(string jgname = "", decimal startprice = 0, decimal endprice = 0)
-        {
-            return dal.CardInfoJGList(jgname,startprice,endprice);
-        }
-        /// <summary>
         /// 查询下拉框
         /// </summary>
         /// <param name="agecard"></param>
@@ -83,9 +72,26 @@ namespace Total_Auto_BLL
         /// <param name="countryb"></param>
         /// <param name="lightCoig"></param>
         /// <returns></returns>
-        public List<CardInfo> CardInfoCofigList(int agecard = 0, int bsx = 0, int cx = 0, int kms = 0, int pl = 0, int pfbz = 0, int zws = 0, int rylx = 0, int color = 0, int cardszd = 0, int qdlx = 0, int countryb = 0, int lightCoig = 0)
+        public List<CardInfo> CardInfoCofigList(string name = "", int brandId = 0, int CardId = 0, int priceId = 0, decimal startprice = 0, decimal endprice = 0, int agecard = 0, int bsx = 0, int cx = 0, int kms = 0, int pl = 0, int pfbz = 0, int zws = 0, int rylx = 0, int color = 0, int cardszd = 0, int qdlx = 0, int countryb = 0, int lightCoig = 0)
         {
-            return dal.CardInfoCofigList(agecard,bsx,cx,kms,pl,pfbz,zws,rylx,color,cardszd,qdlx,countryb,lightCoig);
+            return dal.CardInfoCofigList(name,brandId,CardId,priceId,startprice,endprice,agecard,bsx,cx,kms,pl,pfbz,zws,rylx,color,cardszd,qdlx,countryb,lightCoig);
+        }
+        /// <summary>
+        /// 返填车辆信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public CardInfo ShowCardId(int id)
+        {
+            return dal.ShowCardId(id);
+        }
+        /// <summary>
+        /// 获取价格区间
+        /// </summary>
+        /// <returns></returns>
+        public List<CarsPrice> GetPrices()
+        {
+            return dal.GetPrices();
         }
         /// <summary>
         /// 获取变速箱下拉
