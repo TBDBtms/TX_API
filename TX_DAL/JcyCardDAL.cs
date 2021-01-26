@@ -116,7 +116,7 @@ namespace Total_Auto_DAL
         /// <returns></returns>
         public List<CardInfo> GetdescInfo()
         {
-            string str = $"select * from CardInfo a join  CarAge b on a.AgeId = b.AgeId join Gearbox c on a.GearboxId = c.GearboxId join  CarsVison d on a.CarsVisonId = d.CarsVisonId join  Mileage e on a.MileageId = e.MileageId join Displacement f on a.DisplacementId = f.DisplacementId join Dischargenorm g on a.DisId = g.DisId join Seatnum h on a.SeatnumId = h.SeatnumId join FuelType i on a.FuelTypeId = i.FuelTypeId JOIN  Colors j on a.ColorId = j.ColorId join Carnumlocation k on a.CarnumId = k.CarnumId join DriveType l on a.DriveTypeId = l.DriveTypeId join CountryDistinct m on a.CountryDisId = m.CountryDisId join BrightConfig n on a.ConfigId = n.ConfigId join Brand o on a.BrandId=o.BrandId join CarSeries p on a.CarserId=p.CarserId join CardPhoto z on a.CardId=z.PhotoId join CarsPrice y on a.CardId=y.CardId  ORDER BY y.PriceId desc";
+            string str = $"select * from CardInfo a join  CarAge b on a.AgeId = b.AgeId join Gearbox c on a.GearboxId = c.GearboxId join  CarsVison d on a.CarsVisonId = d.CarsVisonId join  Mileage e on a.MileageId = e.MileageId join Displacement f on a.DisplacementId = f.DisplacementId join Dischargenorm g on a.DisId = g.DisId join Seatnum h on a.SeatnumId = h.SeatnumId join FuelType i on a.FuelTypeId = i.FuelTypeId JOIN  Colors j on a.ColorId = j.ColorId join Carnumlocation k on a.CarnumId = k.CarnumId join DriveType l on a.DriveTypeId = l.DriveTypeId join CountryDistinct m on a.CountryDisId = m.CountryDisId join BrightConfig n on a.ConfigId = n.ConfigId join Brand o on a.BrandId=o.BrandId join CarSeries p on a.CarserId=p.CarserId join CardPhoto z on a.CardId=z.PhotoId join CarsPrice y on a.CardId=y.CardId";
             return JcyDBHelper.GetList<CardInfo>(str);
         }
         /// <summary>
@@ -136,8 +136,17 @@ namespace Total_Auto_DAL
         /// <param name="countryb"></param>
         /// <param name="lightCoig"></param>
         /// <returns></returns>
-        public List<CardInfo> CardInfoCofigList(string name = "", int brandId = 0, int CardId = 0, int priceId = 0, decimal startprice = 0, decimal endprice = 0, int agecard = 0, int bsx = 0, int cx = 0, int kms = 0, int pl = 0, int pfbz = 0, int zws = 0, int rylx = 0, int color = 0, int cardszd = 0, int qdlx = 0, int countryb = 0, int lightCoig = 0)
+        public List<CardInfo> CardInfoCofigList(string name = "", int brandId = 0, int CardId = 0, int priceId = 0, decimal startprice = 0, decimal endprice = 0, int agecard = 0, int bsx = 0, int cx = 0, int kms = 0, int pl = 0, int pfbz = 0, int zws = 0, int rylx = 0, int color = 0, int cardszd = 0, int qdlx = 0, int countryb = 0, int lightCoig = 0,int jg=0)
         {
+            var t = "";
+            if (jg == 1)
+            {
+                t = "a.Price";
+            } else if (jg==2) {
+                t = "a.AgeId";
+            } else if (jg==3) {
+                t = "a.MileageId";
+            }
             string str = $"select * from CardInfo a join  CarAge b on a.AgeId = b.AgeId join Gearbox c on a.GearboxId = c.GearboxId join  CarsVison d on a.CarsVisonId = d.CarsVisonId join  Mileage e on a.MileageId = e.MileageId join Displacement f on a.DisplacementId = f.DisplacementId join Dischargenorm g on a.DisId = g.DisId join Seatnum h on a.SeatnumId = h.SeatnumId join FuelType i on a.FuelTypeId = i.FuelTypeId JOIN  Colors j on a.ColorId = j.ColorId join Carnumlocation k on a.CarnumId = k.CarnumId join DriveType l on a.DriveTypeId = l.DriveTypeId join CountryDistinct m on a.CountryDisId = m.CountryDisId join BrightConfig n on a.ConfigId = n.ConfigId join Brand o on a.BrandId=o.BrandId join CarSeries p on a.CarserId=p.CarserId  where 1 = 1";
             if (!string.IsNullOrEmpty(name))
             {
@@ -151,35 +160,35 @@ namespace Total_Auto_DAL
             {
                 str += $" and p.CarserId={CardId}";
             }
-            if (priceId > 0 && priceId == 1)
+            if (priceId == 1)
             {
                 str += $" and a.Price<=3";
             }
-            if (priceId > 0 && priceId == 2)
+            if (priceId == 2)
             {
                 str += $" and a.Price >= 3 and a.Price<=5";
             }
-            if (priceId > 0 && priceId == 3)
+            if (priceId == 3)
             {
                 str += $" and a.Price>= 5 and a.Price<=7";
             }
-            if (priceId > 0 && priceId == 4)
+            if (priceId == 4)
             {
                 str += $" and a.Price>=7 and a.Price<=9";
             }
-            if (priceId > 0 && priceId == 5)
+            if (priceId == 5)
             {
                 str += $" and a.Price>=9 and a.Price<=12";
             }
-            if (priceId > 0 && priceId == 6)
+            if (priceId == 6)
             {
                 str += $" and a.Price>=12 and a.Price<=16";
             }
-            if (priceId > 0 && priceId == 7)
+            if (priceId == 7)
             {
                 str += $" and a.Price>=16 and a.Price<=20";
             }
-            if (priceId > 0 && priceId == 8)
+            if (priceId == 8)
             {
                 str += $" and a.Price>20";
             }
@@ -238,6 +247,11 @@ namespace Total_Auto_DAL
             if (lightCoig > 0)
             {
                 str += $" and n.ConfigId={lightCoig}";
+            }
+
+            if (jg != 0)
+            {
+                str += $" order by {t} desc";
             }
             return JcyDBHelper.GetList<CardInfo>(str);
         }
